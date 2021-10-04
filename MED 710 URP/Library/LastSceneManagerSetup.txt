@@ -1,0 +1,6 @@
+sceneSetups:
+- path: C:/Users/MED55/Downloads/MED507_P5-main/MED507_P5-main/507_Test_1/Assets/P5
+    Test bed/Scenes/Master_Eyes.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0
