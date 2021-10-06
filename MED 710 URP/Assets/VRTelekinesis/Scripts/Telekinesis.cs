@@ -36,7 +36,7 @@ public class Telekinesis : MonoBehaviour
     private GameObject m_PathParticle;
     private float m_InitialDrag;
     private float m_InitialAngularDrag;
-    [SerializeField] private float m_fDistance;
+    [SerializeField] public float m_fDistance;
     private Vector3 m_DropVel;
     private bool m_OriginalGravity;
     private Queue<Vector3> lastPositionQueue = new Queue<Vector3>();
@@ -53,6 +53,8 @@ public class Telekinesis : MonoBehaviour
     public BoolEvent _activeStatus;
 
     [SerializeField]bool _trigger;
+    public Vector3 localVelocity;
+    
 
 
     void Start()
@@ -79,6 +81,7 @@ public class Telekinesis : MonoBehaviour
             // {
             //     _handDevice = _teleHand.controller;
             // }
+            localVelocity = transform.InverseTransformDirection(this.GetComponent<Rigidbody>().velocity); 
         }
     }
 
@@ -123,6 +126,7 @@ public class Telekinesis : MonoBehaviour
             float travelDistance = Vector3.Distance(targetPos, m_ActiveObject.transform.position);
             rigidBody.drag = Remap(Mathf.Min(travelDistance, .1f), m_InitialDrag, 5, 5, m_InitialDrag);
             rigidBody.AddForce((targetPos - m_ActiveObject.transform.position) * (travelDistance * m_FollowSpeed) * _additionalForce);
+            
 
 
             if (!_trigger && !Input.GetMouseButton(0))
@@ -234,6 +238,8 @@ public class Telekinesis : MonoBehaviour
                 rigidBody.angularDrag = float.MaxValue;
                 rigidBody.useGravity = false;
                 rigidBody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+
+                
                 m_fDistance = Vector3.Distance(m_ActiveObject.transform.position, transform.position);
             }
 
