@@ -36,7 +36,7 @@ public class Telekinesis : MonoBehaviour
     private GameObject m_PathParticle;
     private float m_InitialDrag;
     private float m_InitialAngularDrag;
-    [SerializeField] public float m_fDistance;
+    public float m_fDistance;
     private Vector3 m_DropVel;
     private bool m_OriginalGravity;
     private Queue<Vector3> lastPositionQueue = new Queue<Vector3>();
@@ -81,7 +81,7 @@ public class Telekinesis : MonoBehaviour
             // {
             //     _handDevice = _teleHand.controller;
             // }
-            localVelocity = transform.InverseTransformDirection(this.GetComponent<Rigidbody>().velocity); 
+//                   localVelocity = transform.InverseTransformDirection(this.GetComponent<Rigidbody>().velocity); 
         }
     }
 
